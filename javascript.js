@@ -1,13 +1,18 @@
-const result = Number(window.prompt("Выберите уровень сложности: 1 - Легко, 2 - Средне, 3 - Сложно"), 1);
-let snakeColor;
+let result = Number(window.prompt("Выберите уровень сложности: 1 - Легко, 2 - Средне, 3 - Сложно"), "1");
+let snakeColor = 'img/shkura.jpg';
 let random;
 var canvas = document.getElementById('game')
 var context = canvas.getContext('2d')
-let event = null;
+const up = document.getElementById('up')
+const left = document.getElementById('left')
+const right = document.getElementById('right')
+const down = document.getElementById('down')
 
-document.addEventListener("touchstart", function (e) {
-    event = e;
-});
+// let event = null;
+//
+// document.addEventListener("touchstart", function (e) {
+//     event = e;
+// });
 // document.addEventListener("touchmove", function (e) {
 //     if (event) {
 //         console.log("Move delta: " + (e.touches[0].pageX - event.touches[0].pageX))
@@ -64,6 +69,11 @@ var grib = {
 let scoreSnake = 0;
 let nowSpeed = -10;
 switch (result) {
+  case 0:
+    nowSpeed = -10;
+    result = 1;
+    snakeColor = 'img/shkura.jpg'
+    break;
   case 1:
     nowSpeed = -10;
     snakeColor = 'img/shkura.jpg'
@@ -89,7 +99,6 @@ function loop() {
     return;
   }
 document.getElementById("score12").innerHTML = scoreSnake;
-
 
   speed = nowSpeed;
 
@@ -214,6 +223,22 @@ document.addEventListener('keydown', function(e){
     snake.dy = grid;
     snake.dx = 0;
   }
+})
+left.addEventListener('click', function(e){
+  snake.dx = -grid;
+  snake.dy = 0;
+})
+up.addEventListener('click', function(e){
+  snake.dy = -grid;
+  snake.dx = 0;
+})
+right.addEventListener('click', function(e){
+  snake.dx = grid;
+  snake.dy = 0;
+})
+down.addEventListener('click', function(e){
+  snake.dy = grid;
+  snake.dx = 0;
 })
 }
 
