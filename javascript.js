@@ -182,5 +182,5 @@ document.addEventListener('keydown', function(e){
 }
 
 
-requestAnimationFrame(loop);
+// requestAnimationFrame(loop);
 clearTimeout(timer);
