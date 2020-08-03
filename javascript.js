@@ -3,6 +3,35 @@ let snakeColor;
 let random;
 var canvas = document.getElementById('game')
 var context = canvas.getContext('2d')
+let event = null;
+
+document.addEventListener("touchstart", function (e) {
+    event = e;
+});
+// document.addEventListener("touchmove", function (e) {
+//     if (event) {
+//         console.log("Move delta: " + (e.touches[0].pageX - event.touches[0].pageX))
+//     }
+//     if (e.touches[0].pageX - event.touches[0].pageX < 0) {
+//       snake.dx = -grid;
+//       snake.dy = 0;
+//     }
+//     else if (e.touches[0].pageY - event.touches[0].pageY < 0){
+//       snake.dy = -grid;
+//       snake.dx = 0;
+//     }
+//     else if (e.touches[0].pageX - event.touches[0].pageX > 0){
+//       snake.dx = grid;
+//       snake.dy = 0;
+//     }
+//     else if (e.touches[0].pageY - event.touches[0].pageY > 0){
+//       snake.dy = grid;
+//       snake.dx = 0;
+//     }
+// });
+document.addEventListener("touched", function (e) {
+    event = null;
+});
 var grid = 20;
 var speed = 0;
 let timer;
@@ -159,8 +188,15 @@ document.getElementById("score12").innerHTML = scoreSnake;
 
 
       }
+      if (cell.x == grib.x && cell.y == grib.y) {
+        snake.Length += 5;
+        scoreSnake += 10;
+        grib.x = 0;
+        grib.y = 0
+      }
     }
   })
+
 document.addEventListener('keydown', function(e){
   if (e.which === 37 && snake.dx === 0) {
     snake.dx = -grid;
@@ -182,5 +218,5 @@ document.addEventListener('keydown', function(e){
 }
 
 
-// requestAnimationFrame(loop);
+requestAnimationFrame(loop);
 clearTimeout(timer);
